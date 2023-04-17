@@ -23,7 +23,11 @@ class Database(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null,
   }
 
   override fun onCreate(db: SQLiteDatabase?) {
-    val CREATE_TABLE = ("CREATE_TABLE $TABLE_NAME($KEY_ID INTEGER PRIMARY KEY,$KEY_TITLE TEXT,$KEY_NOTE TEXT,$KEY_TIMESTAMP TEXT)")
+    val CREATE_TABLE = ("CREATE TABLE " + TABLE_NAME + "("
+            + KEY_ID + " INTEGER PRIMARY KEY,"
+            + KEY_TITLE + " TEXT,"
+            + KEY_NOTE + " TEXT,"
+            + KEY_TIMESTAMP + " TEXT)")
     db?.execSQL(CREATE_TABLE)
   }
 
@@ -64,7 +68,7 @@ class Database(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null,
 
     val noteList: ArrayList<NoteItem> = ArrayList()
 
-    val selectQuery = "SELECT  * FROM $TABLE_NAME"
+    val selectQuery = "SELECT * FROM $TABLE_NAME"
 
     val db = this.readableDatabase
 
